@@ -10,8 +10,17 @@
 			win.attachEvent('onmessage', onMessage);
 		}
 
+		var values = {};
+		var _key;
+		for ( var i = 0, len = localStorage.length; i < len; ++i ) {
+			_key = localStorage.key(i);
+		  	values[_key] = localStorage.getItem(_key);
+		}
 		// Tell the parent window we're ready.
-		win.parent.postMessage(JSON.stringify({ready:true}),"*");
+		win.parent.postMessage(JSON.stringify({
+			ready:true,
+			values : values
+		}),"*");
 	}
 	
 	function onMessage(e){
