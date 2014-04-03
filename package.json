@@ -1,22 +1,21 @@
 {
-  "name": "xds",
+  "name": "xdls",
   "version": "0.0.0",
-  "description": "Cross Domain Storage (xds)",
-  "main": "example.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "homepage" : "http://www.youtube.com/watch?v=cDuG95DXbw8",
+  "author" : {
+    "name" : "Obi-Wan Kenobi"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/lsl/xds.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/lsl/xds/issues"
-  },
-  "homepage": "https://github.com/lsl/xds",
-  "dependencies": {
-    "express": "~3.4.8"
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint" : "~0.6.0",
+    "grunt-contrib-uglify" : "~0.2.2",
+    "grunt-contrib-concat" : "~0.3.0",
+    "grunt-contrib-watch"  : "~0.4.0",
+    "grunt-contrib-connect"  : "~0.3.0",
+    "grunt-open": "~0.2.0",
+    "connect-livereload": "~0.3.0",
+    "matchdep"             : "~0.1.2",
+    "grunt-mocha-test" : "~0.7.0"
   }
 }
