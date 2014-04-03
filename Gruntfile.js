@@ -19,24 +19,57 @@ module.exports = function(grunt) {
       '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
       '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
       ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
-    // Task configuration.
-    concat: {
-      options: {
-        banner: '<%= banner %>',
-        stripBanners: true
-      },
+    clean: {
       dist: {
-        src: ['lib/{,*/}*.js'],
-        dest: 'dist/<%= pkg.name %>.v<%= pkg.version %>.js'
+        files: [{
+          dot: true,
+          src: [
+            '.tmp',
+            'dist'
+          ]
+        }]
       }
     },
     uglify: {
       options: {
         banner: '<%= banner %>'
       },
-      dist: {
-        src: '<%= concat.dist.dest %>',
-        dest: 'dist/<%= pkg.name %>.v<%= pkg.version %>.min.js'
+      client: {
+        src: 'lib/xdls.js',
+        dest: 'dist/<%= pkg.name %>.js'
+      },
+      server: {
+        src: 'lib/xdls-serve.js',
+        dest: '.tmp/<%= pkg.name %>-serve.js'
+      },
+    },
+    htmlmin: {
+      server: {
+        options: {
+          removeCommentsFromCDATA: true,
+          collapseWhitespace: true,
+          collapseBooleanAttributes: true,
+          removeAttributeQuotes: true,
+          removeRedundantAttributes: true,
+          useShortDoctype: true,
+          removeEmptyAttributes: true,
+          removeOptionalTags: true
+        },
+        src: 'lib/xdls-server.html',
+        dest: '.tmp/xdls-server.hml'
+      }
+    },
+    copy: {
+      server: {
+        files: [{
+          expand: true,
+          dot: true,
+          flatten: true,
+          dest: 'dist',
+          src: [
+            '.tmp/*.*'
+          ]
+        }]
       }
     },
     jshint: {
@@ -115,7 +148,7 @@ module.exports = function(grunt) {
   
 
   // Default task.
-  grunt.registerTask('default', ['mochaTest', 'concat', 'uglify']);
+  grunt.registerTask('default', ['clean:dist', 'mochaTest', 'uglify:client', 'uglify:server','htmlmin:server','copy:server']);
 
   // Specific tasks
   grunt.registerTask('test', ['mochaTest']);

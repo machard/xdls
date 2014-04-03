@@ -1,0 +1,4 @@
+/*! xdls - v0.0.0 - 2014-04-03
+* http://www.youtube.com/watch?v=cDuG95DXbw8
+* Copyright (c) 2014 Obi-Wan Kenobi; Licensed  */
+!function(){function a(){g.addEventListener?g.addEventListener("message",b,!1):g.attachEvent&&g.attachEvent("onmessage",b);for(var a,c={},d=0,e=localStorage.length;e>d;++d)a=localStorage.key(d),c[a]=localStorage.getItem(a);g.parent.postMessage(JSON.stringify({ready:!0,values:c}),"*")}function b(a){request=JSON.parse(a.data),"get"===request.type?f(c(request),a.origin):"set"===request.type?f(d(request),a.origin):"del"===request.type&&f(e(request),a.origin)}function c(a){return{key:a.key,val:h.getItem(a.key),type:"get",_xds:a._xds}}function d(a){return h.setItem(a.key,a.val),{key:a.key,type:"set",_xds:a._xds}}function e(a){return h.removeItem(a.key),{key:a.key,type:"del",_xds:a._xds}}function f(a){g.parent.postMessage(JSON.stringify(a),"*")}var g=window,h=g.localStorage;a()}();
