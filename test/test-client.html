@@ -16,7 +16,7 @@
 			new xdls({ url : "http://127.0.0.1:3001/xdls-server.html"}, function() {
 				console.log(window.localStorage.getItem('test'));
 				console.log(window.localStorage.setItem('test', 'pouet'))
-				console.log(window.localStorage.getItem('test'))
+				console.log(window.localStorage.getItem('test', function(){console.log('cb')}))
 			});
 			
 		};	
